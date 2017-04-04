@@ -41,17 +41,21 @@
 			</script>
 
 			</br>
-			<h2 style="font-family:montserrat;font-weight:600;font-size:30px">VariChill Monitoring Funtions</h2>
-			<button class="button" id='blinkButton' type='button' onclick="plugFunc()">PLUG HER UP</button>
-			<button class="button" id='blinkButton' type='button' onclick="chillFunc()">CHILL OUT</button>
-			<button class="button" id='blinkButton' type='button' onclick="toggleLED()">Blink</button>
-			</br>
-			</br>
-			<!-- <p id="names">Is she plugged?  <span id="plugBool"></span></p> -->
-			<!-- <p id="names">Toggled the LED <span id="countNum" style="font-size:40px"></span> times</p> -->
+			<h2 style="font-family:montserrat;font-weight:600;font-size:30px">VariChill Monitoring Functions</h2>
 			
 			<p id="names">Top Box Temp: <span id="topTempNum" style="font-size:30px;font-weight:600"><span></p>
 			<p id="names">Vaccine Temp: <span id="bottomTempNum" style="font-size:30px;font-weight:600"><span></p>
+			</br>
+			</br>
+			
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" id='blinkButton' type='button' onclick="plugFunc()">PLUG HER UP</button>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"id='blinkButton' type='button' onclick="chillFunc()">CHILL OUT</button>
+			</br>
+			</br>
+			
+
+			
+
 			
 			<script>
 				var accessToken = "124dab5e9d90650a3fee6f14e66452c1782be720";
@@ -77,24 +81,7 @@
 					var requestUrl = "https://api.spark.io/v1/devices/" + testChillID + "/" + toggle + "/";
 					$.post(requestUrl, {access_token: accessToken});
 				}
-				
-				
-				<!-- window.setInterval(function() { -->
-					<!-- requestUrl = "https://api.spark.io/v1/devices/" + testChillID + "/counter/?access_token=" + accessToken; -->
-					<!-- $.getJSON(requestUrl, function(json) { -->
-						<!-- document.getElementById("countNum").innerHTML = json.result; -->
-					<!-- }); -->
-				
-				<!-- }, 500); -->
-				
-				<!-- window.setInterval(function() { -->
-					<!-- requestUrl = "https://api.spark.io/v1/devices/" + testChillID + "/bool/?access_token=" + accessToken; -->
-					<!-- $.getJSON(requestUrl, function(json) { -->
-						<!-- binary = parseInt(json.result); -->
-						<!-- onOff(); -->
-					<!-- }); -->
-				
-				<!-- }, 500); -->
+
 				
 				window.setInterval(function() {
 					requestUrl = "https://api.thingspeak.com/channels/" + topBoxID + "/feeds.json?results=1";
@@ -110,6 +97,22 @@
 					});
 				}, 500);
 				
+				function clearBottomChannel() {
+					var requestUrl = "https://api.thingspeak.com/channels/" + bottomBoxID + "/feeds.json/?api_key=T7IPM5LRWLSILFE5";
+					$.ajax({
+						url: requestUrl,
+						type: "DELETE",
+					});
+				}
+				
+				function clearTopChannel() {
+					var requestUrl = "https://api.thingspeak.com/channels/" + topBoxID + "/feeds.json/?api_key=T7IPM5LRWLSILFE5";
+					$.ajax({
+						url: requestUrl,
+						type: "DELETE",
+					});
+				}
+				
 				function onOff() {
 					if (binary == 1) {
 						document.getElementById("plugBool").innerHTML = "Turned On";
@@ -123,6 +126,11 @@
 			</br>
 			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
 			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
+			</br>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+												id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+												id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button>
 
 			
 		  <script src="js/scripts.js"></script>

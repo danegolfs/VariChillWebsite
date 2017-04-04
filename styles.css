@@ -16,7 +16,15 @@ h2 {
 }
 .button {
 	font-family:montserrat;
-	font-size:18px
+	font-size:18px;
+	background-color: #0f466a;
+	border-radius:4px;
+}
+.funcButton {
+	font-family:montserrat;
+	font-size:18px;
+	background-color: #0f466a;
+	border-radius:4px;
 }
 #team {
 	font-family:montserrat;
