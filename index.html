@@ -43,7 +43,7 @@
 
 			</br>
 			<h2 style="font-family:montserrat;font-weight:600;font-size:30px">VariChill Monitoring Functions</h2>
-			
+			<p id="names">VariChill is <span id="onlineStatus" style="font-size:30px;font-weight:600"><span></p>			
 			<p id="names">Top Box Temp: <span id="topTempNum" style="font-size:30px;font-weight:600"><span></p>
 			<p id="names">Vaccine Temp: <span id="bottomTempNum" style="font-size:30px;font-weight:600"><span></p>
 			<p id="names">Cooling Is <span id="coolingBool" style="font-size:30px;font-weight:600"><span></p>
@@ -117,6 +117,15 @@
 						document.getElementById("bottomTempNum").innerHTML = json.feeds[0].field1;
 					});
 				}, 500);
+
+				window.setInterval(function() {
+					requestUrl = "https://api.spark.io/v1/devices/" + VariChillV2 + "?access_token=" + accessToken;
+					$.getJSON(requestUrl, function(json) {
+						online = json.connected;
+						onlineOutput();
+						document.getElementById("onlineStatus").innerHTML = json.connected;
+					});
+				}, 500);
 				
 //				function clearBottomChannel() {
 //					var requestUrl = "https://api.thingspeak.com/channels/" + bottomBoxID + "/feeds.json/?api_key=T7IPM5LRWLSILFE5";
@@ -133,6 +142,13 @@
 //						type: "DELETE",
 //					});
 //				}
+
+				function onlineOutput() {
+					if (online == true) {
+						document.getElementById("onlineStatus").inner = "Connected";
+					} else {
+						document.getElementById("onlineStatus").inner = "Not Connected";
+				}
 				
 				function chillOutput() {
 					if (chillOn == true) {
