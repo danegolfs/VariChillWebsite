@@ -25,11 +25,10 @@
 				</br>
 				Leandro Grigera&nbsp&nbsp|&nbsp&nbspJohn Masson
 			</p>
-			<p id="names" style="font-size:23px">Advisor: Jorge Santiago</p>
 
 			
 			<script>
-			
+			1
 			var x = false;
 
 			$(document).ready(function() {
@@ -47,11 +46,15 @@
 			
 			<p id="names">Top Box Temp: <span id="topTempNum" style="font-size:30px;font-weight:600"><span></p>
 			<p id="names">Vaccine Temp: <span id="bottomTempNum" style="font-size:30px;font-weight:600"><span></p>
+			<p id="names">Cooling On: <span id="coolingBool" style="font-size:30px;font-weight:600"><span></p>
+			<p id="names">Plugged: <span id="plugBool" style="font-size:30px;font-weight:600"><span></p>
 			</br>
 			</br>
 			
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" id='blinkButton' type='button' onclick="plugFunc()">PLUG HER UP</button>
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"id='blinkButton' type='button' onclick="chillFunc()">CHILL OUT</button>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" 
+						id='blinkButton' type='button' onclick="plugFunc()">PLUG EEEEER UP</button>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+							id='blinkButton' type='button' onclick="chillFunc()">CHILL OUT</button>
 			</br>
 			</br>
 			
@@ -83,6 +86,21 @@
 					var requestUrl = "https://api.spark.io/v1/devices/" + testChillID + "/" + toggle + "/";
 					$.post(requestUrl, {access_token: accessToken});
 				}
+				
+				
+				window.setInterval(function() {
+					requestUrl = "https://api.spark.io/v1/devices/" + VariChillV2 + "/chillBool?access_token=124dab5e9d90650a3fee6f14e66452c1782be720";
+					$.getJSON(requestUrl, function(json) {
+						document.getElementById("coolingBool").innerHTML = json.result;
+					});
+				}, 500);
+				
+				window.setInterval(function() {
+					requestUrl = "https://api.spark.io/v1/devices/" + VariChillV2 + "/plugBool?access_token=124dab5e9d90650a3fee6f14e66452c1782be720";
+					$.getJSON(requestUrl, function(json) {
+						document.getElementById("plugBool").innerHTML = json.result;
+					});
+				}, 500);
 
 				
 				window.setInterval(function() {
@@ -127,21 +145,35 @@
 			</script>
 			</br>
 			
-			<span>
-			<div align=center style="float:left;position:relative;padding-left:40px">
-				<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
-				</br>
-				<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+			
+			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
+			
+			</br>
+			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
+			</br>
+			</br>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
 												id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button>
-			</div>
-			<div align=center style="position:relative;">
-				<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
-				</br>
-				<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
 												id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button>
 			
-			</div>
-			</span>
+
+			
+			<!-- <div align=center style="float:left;position:relative;padding-left:40px"> -->
+				<!-- <iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe> -->
+				<!-- </br> -->
+				<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
+												<!-- id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button> -->
+			<!-- </div> -->
+
+			<!-- <div align=center style="position:relative;"> -->
+				<!-- <iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe> -->
+				<!-- </br> -->
+				<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
+												<!-- id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button> -->
+			
+			<!-- </div> -->
+
 				
 			</br>
 			
