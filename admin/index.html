@@ -28,16 +28,16 @@
 
 			
 			<script>
-			    1
-			    var x = false;
+			1
+			var x = false;
 
-			    $(document).ready(function () {
-			        $('#chill').val('CHILLING OUT');
-			    });
-
-			    $(document).ready(function () {
-			        $('#blinkButton')
-			    });
+			$(document).ready(function() {
+				$('#chill').val('CHILLING OUT');
+			});
+			
+			$(document).ready(function() {
+				$('#blinkButton')
+			});
 			
 			</script>
 
@@ -51,6 +51,10 @@
 			</br>
 			</br>
 			
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" 
+						id='blinkButton' type='button' onclick="plugFunc()">PLUG EEEEER UP</button>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+							id='blinkButton' type='button' onclick="chillFunc()">CHILL OUT</button>
 			</br>
 			</br>
 			
@@ -118,21 +122,21 @@
 					});
 				}, 500);
 				
-//				function clearBottomChannel() {
-//					var requestUrl = "https://api.thingspeak.com/channels/" + bottomBoxID + "/feeds.json/?api_key=T7IPM5LRWLSILFE5";
-//					$.ajax({
-//						url: requestUrl,
-//						type: "DELETE",
-//					});
-//				}
-//				
-//				function clearTopChannel() {
-//					var requestUrl = "https://api.thingspeak.com/channels/" + topBoxID + "/feeds.json/?api_key=T7IPM5LRWLSILFE5";
-//					$.ajax({
-//						url: requestUrl,
-//						type: "DELETE",
-//					});
-//				}
+				function clearBottomChannel() {
+					var requestUrl = "https://api.thingspeak.com/channels/" + bottomBoxID + "/feeds.json/?api_key=T7IPM5LRWLSILFE5";
+					$.ajax({
+						url: requestUrl,
+						type: "DELETE",
+					});
+				}
+				
+				function clearTopChannel() {
+					var requestUrl = "https://api.thingspeak.com/channels/" + topBoxID + "/feeds.json/?api_key=T7IPM5LRWLSILFE5";
+					$.ajax({
+						url: requestUrl,
+						type: "DELETE",
+					});
+				}
 				
 				function chillOutput() {
 					if (chillOn == true) {
@@ -154,14 +158,36 @@
 			</script>
 			</br>
 			
-			<span style="padding:20px">
-                <iframe width="450" height="250" style="border: 2px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
 			
-			    <iframe width="450" height="250" style="border: 2px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
-            
-            </span>
+			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
 			
 			</br>
+			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
+			</br>
+			</br>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+												id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button>
+			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+												id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button>
+			
+
+			
+			<!-- <div align=center style="float:left;position:relative;padding-left:40px"> -->
+				<!-- <iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe> -->
+				<!-- </br> -->
+				<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
+												<!-- id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button> -->
+			<!-- </div> -->
+
+			<!-- <div align=center style="position:relative;"> -->
+				<!-- <iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe> -->
+				<!-- </br> -->
+				<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
+												<!-- id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button> -->
+			
+			<!-- </div> -->
+
+				
 			</br>
 			
 			
