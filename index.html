@@ -25,6 +25,8 @@
 				</br>
 				Leandro Grigera&nbsp&nbsp|&nbsp&nbspJohn Masson
 			</p>
+			<p id="names" style="font-size:23px">Advisor: Jorge Santiago</p>
+
 			
 			<script>
 			
@@ -124,13 +126,26 @@
 				
 			</script>
 			</br>
-			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
-			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
-			</br>
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+			
+			<span>
+			<div align=center style="float:left;position:relative;padding-left:40px">
+				<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
+				</br>
+				<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
 												id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button>
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
+			</div>
+			<div align=center style="position:relative;">
+				<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
+				</br>
+				<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
 												id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button>
+			
+			</div>
+			</span>
+				
+			</br>
+			
+			
 
 			
 		  <script src="js/scripts.js"></script>
