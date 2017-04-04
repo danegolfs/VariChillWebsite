@@ -22,7 +22,7 @@
 			<h2 id="team">Team 16</h2>
 			
 			<p id="names">Dane Walton&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbspJulian Mickelson
-				</br>
+				<br/>
 				Leandro Grigera&nbsp&nbsp|&nbsp&nbspJohn Masson
 			</p>
 
@@ -41,23 +41,23 @@
 			
 			</script>
 
-			</br>
+			<br/>
 			<h2 style="font-family:montserrat;font-weight:600;font-size:30px">VariChill Monitoring Functions</h2>
 			
-			<p id="names">VariChill is <span id="onlineStatus" style="font-size:30px;font-weight:600"><span></p>
-			<p id="names">Top Box Temp: <span id="topTempNum" style="font-size:30px;font-weight:600"><span></p>
-			<p id="names">Vaccine Temp: <span id="bottomTempNum" style="font-size:30px;font-weight:600"><span></p>
-			<p id="names">Cooling Is <span id="coolingBool" style="font-size:30px;font-weight:600"><span></p>
-			<p id="names">Plug is <span id="plugBool" style="font-size:30px;font-weight:600"><span></p>
-			</br>
-			</br>
+			<p id="names">VariChill is <span id="onlineStatus" style="font-size:30px;font-weight:600"></span></p>
+			<p id="names">Top Box Temp: <span id="topTempNum" style="font-size:30px;font-weight:600"></span></p>
+			<p id="names">Vaccine Temp: <span id="bottomTempNum" style="font-size:30px;font-weight:600"></span></p>
+			<p id="names">Cooling Is <span id="coolingBool" style="font-size:30px;font-weight:600"></span></p>
+			<p id="names">Plug is <span id="plugBool" style="font-size:30px;font-weight:600"></span></p>
+			<br/>
+			<br/>
 			
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" 
-						id='blinkButton' type='button' onclick="plugFunc()">PLUG EEEEER UP</button>
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
-							id='blinkButton' type='button' onclick="chillFunc()">CHILL OUT</button>
-			</br>
-			</br>
+			<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"  -->
+						<!-- id='blinkButton' type='button' onclick="plugFunc()">PLUG EEEEER UP</button> -->
+			<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
+							<!-- id='blinkButton' type='button' onclick="chillFunc()">CHILL OUT</button> -->
+			<br/>
+			<br/>
 			
 
 			
@@ -76,6 +76,7 @@
 				var toggle = "blink";
 				var chillOn;
                 var plugIn;
+				var online;
 				function plugFunc() {
 					var requestUrl = "https://api.spark.io/v1/devices/" + VariChillV2 + "/" + plug + "/";
 					$.post(requestUrl, {access_token: accessToken});
@@ -95,7 +96,6 @@
 					$.getJSON(requestUrl, function(json) {
                         chillOn = json.result;
                         chillOutput();
-//						document.getElementById("coolingBool").innerHTML = json.result;
 					});
 				}, 500);
 				
@@ -104,7 +104,6 @@
 					$.getJSON(requestUrl, function(json) {
                         plugIn = json.result;
                         plugOutput();
-//						document.getElementById("plugBool").innerHTML = json.result;
 					});
 				}, 500);
 
@@ -124,11 +123,10 @@
 				}, 500);
 
 				window.setInterval(function() {
-					requestUrl = "https://api.spark.io/v1/devices/" + VariChillV2 + "?access_token=" + accessToken;
+					requestUrl = "https://api.spark.io/v1/devices/" + VariChillV2 + "?access_token=124dab5e9d90650a3fee6f14e66452c1782be720";
 					$.getJSON(requestUrl, function(json) {
 						online = json.connected;
 						onlineOutput();
-						document.getElementById("onlineStatus").innerHTML = json.connected;
 					});
 				}, 500);
 				
@@ -150,9 +148,10 @@
 
 				function onlineOutput() {
 					if (online == true) {
-						document.getElementById("onlineStatus").inner = "Connected";
+						document.getElementById("onlineStatus").innerHTML = "Online";
 					} else {
-						document.getElementById("onlineStatus").inner = "Not Connected";
+						document.getElementById("onlineStatus").innerHTML = "Offline";
+					}
 				}
 				
 				function chillOutput() {
@@ -173,44 +172,23 @@
 				
 				
 			</script>
-			</br>
+			<br/>
 			
 			
 			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe>
 			
-			</br>
+			<br/>
 			<iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe>
-			</br>
-			</br>
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
-												id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button>
-			<button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none"
-												id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button>
-			
-
-			
-			<!-- <div align=center style="float:left;position:relative;padding-left:40px"> -->
-				<!-- <iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/246732/charts/1?dynamic=true&results=100"></iframe> -->
-				<!-- </br> -->
-				<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
+			<br/>
+			<br/>
+			<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
 												<!-- id="clearTopChannel" type='button' onClick="clearTopChannel()">Clear Top Channel</button> -->
-			<!-- </div> -->
-
-			<!-- <div align=center style="position:relative;"> -->
-				<!-- <iframe width="450" height="250" style="border: 1px solid #cccccc;" src="http://thingspeak.com/channels/244773/charts/1?dynamic=true&results=100"></iframe> -->
-				<!-- </br> -->
-				<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
+			<!-- <button class="button" style="background-color: #0f466a;color:white;border-radius:4px;padding: 10px 10px;border:none" -->
 												<!-- id="clearBottomChannel" type='button' onClick="clearBottomChannel()">Clear Bottom Channel</button> -->
-			
-			<!-- </div> -->
 
 				
-			</br>
+			<br/>
 			
-			
-
-			
-		  <script src="js/scripts.js"></script>
 		 </div>
 	</body>
 </html>
